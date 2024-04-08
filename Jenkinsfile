@@ -51,7 +51,7 @@ pipeline {
         stage("Run Gauntlt Attacks") {
             steps {
                 // Pull your custom Gauntlt Docker image
-                sh 'docker pull cithit/gauntlt'
+                sh 'docker pull cithit/gauntlt:build-4'
 
                 // Run Gauntlt using the Docker image
                 sh '''
