@@ -1,0 +1,17 @@
+@slow
+Feature: check to make sure the right ports are open on our server
+  Background:
+    Given "nmap" is installed
+    And the following profile:
+      |name    | value          |
+      |host    | 10.48.10.170   |
+
+  Scenario: Verify server is open on expected ports
+    When I launch an "nmap" attack with:
+    """
+    nmap -F <host>
+    """
+    Then the output should match:
+    """
+    80/tcp open
+    """
