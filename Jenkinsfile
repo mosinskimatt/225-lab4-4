@@ -56,7 +56,7 @@ pipeline {
                 // Run Gauntlt using the Docker image
                 // This now mounts the Jenkins workspace to /gauntlt-tests inside the Docker container
                 sh """
-                docker run --rm -v "\${WORKSPACE}":/gauntlt-tests \
+                docker run -v "\${WORKSPACE}":/gauntlt-tests \
                 cithit/gauntlt:build-4 gauntlt /gauntlt-tests/port.attack
                 """
             }
