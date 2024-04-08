@@ -57,7 +57,7 @@ pipeline {
                 // This assumes that port.attack is in the root of your Jenkins workspace
                 sh '''
                 docker run --rm -v ${WORKSPACE}:/gauntlt-tests \
-                cithit/gauntlt:build-4 gauntlt /gauntlt-tests/port.attack
+                cithit/gauntlt:build-4 gauntlt port.attack
                 '''
             }
         }
