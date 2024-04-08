@@ -48,18 +48,19 @@ pipeline {
             }
         }
 
-         stage ("Run Networks Checks") {
+         stage("Run Gauntlt Attacks") {
             steps {
-                //                                                                 ###change the IP address in this section to your cluster IP address!!!!####
-                sh 'docker pull public.ecr.aws/portswigger/dastardly:latest'
+                // Pull your custom Gauntlt Docker image
+                sh 'docker pull cithit/gauntlt:latest'
+                // Run Gauntlt using the Docker image
                 sh '''
-                    docker run --user $(id -u) -v ${WORKSPACE}:${WORKSPACE}:rw \
-                    -e BURP_START_URL=http://10.48.10.170 \
-                    -e BURP_REPORT_FILE_PATH=${WORKSPACE}/dastardly-report.xml \
-                    public.ecr.aws/portswigger/dastardly:latest
+                    docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
+                    cithit/gauntlt:latest
                 '''
             }
         }
+
+
      
          
         stage('Check Kubernetes Cluster') {
