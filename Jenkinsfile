@@ -54,12 +54,14 @@ pipeline {
                 sh 'docker pull cithit/gauntlt:build-4'
 
                 // Run Gauntlt using the Docker image
+                // This assumes that port.attack is in the root of your Jenkins workspace
                 sh '''
-                docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
-                cithit/gauntlt:build-4 gauntlt ${WORKSPACE}/port.attack
+                docker run --rm -v ${WORKSPACE}:/gauntlt-tests \
+                cithit/gauntlt:build-4 gauntlt /gauntlt-tests/port.attack
                 '''
             }
         }
+
 
          
         stage('Check Kubernetes Cluster') {
