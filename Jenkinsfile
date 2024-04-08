@@ -57,7 +57,7 @@ pipeline {
                 sh '''
                     docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
                     -v ${WORKSPACE}/225-lab4-3:/gauntlt-tests \
-                    cithit/gauntlt gauntlt /gauntlt-tests/*.attack
+                    cithit/gauntlt:build-4 gauntlt /gauntlt-tests/*.attack
                 '''
             }
         }
