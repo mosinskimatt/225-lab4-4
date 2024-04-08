@@ -48,18 +48,19 @@ pipeline {
             }
         }
 
-         stage("Run Gauntlt Attacks") {
+        stage("Run Gauntlt Attacks") {
             steps {
                 // Pull your custom Gauntlt Docker image
                 sh 'docker pull cithit/gauntlt:latest'
+
                 // Run Gauntlt using the Docker image
                 sh '''
                     docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
-                    cithit/gauntlt:latest
+                    -v ${WORKSPACE}/225-lab4-3:/gauntlt-tests \
+                    cithit/gauntlt:latest gauntlt /gauntlt-tests/*.attack
                 '''
             }
         }
-
 
      
          
