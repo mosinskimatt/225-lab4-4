@@ -52,7 +52,7 @@ pipeline {
             steps {
                 // Pull your custom Gauntlt Docker image
                 sh 'docker pull cithit/gauntlt:build-4'
-
+        
                 // Run Gauntlt using the Docker image
                 // This assumes that port.attack is in the root of your Jenkins workspace
                 sh """
@@ -61,7 +61,7 @@ pipeline {
                 """
             }
         }
-  
+
         stage('Check Kubernetes Cluster') {
             steps {
                 script {
