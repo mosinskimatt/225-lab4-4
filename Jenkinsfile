@@ -55,14 +55,12 @@ pipeline {
 
                 // Run Gauntlt using the Docker image
                 sh '''
-                    docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
-                    -v ${WORKSPACE} :/gauntlt-tests \
-                    cithit/gauntlt:build-4 gauntlt /gauntlt-tests/*.attack
+                docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
+                cithit/gauntlt:build-4 gauntlt ${WORKSPACE}/port.attack
                 '''
             }
         }
 
-     
          
         stage('Check Kubernetes Cluster') {
             steps {
