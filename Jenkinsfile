@@ -48,24 +48,19 @@ pipeline {
             }
         }
 
-        // Added stage for generating test data
-        stage('Generate and Add Test Data') {
+         stage ("Run Security Checks") {
             steps {
-                script {
-                    // Run the python script to generate data to add to the database
-                    sh "python data-gen.py"
-                }
+                //                                                                 ###change the IP address in this section to your cluster IP address!!!!####
+                sh 'docker pull public.ecr.aws/portswigger/dastardly:latest'
+                sh '''
+                    docker run --user $(id -u) -v ${WORKSPACE}:${WORKSPACE}:rw \
+                    -e BURP_START_URL=http://10.48.10.170 \
+                    -e BURP_REPORT_FILE_PATH=${WORKSPACE}/dastardly-report.xml \
+                    public.ecr.aws/portswigger/dastardly:latest
+                '''
             }
         }
-
-        stage('Remove Test Data') {
-            steps {
-                script {
-                    // Run the python script to generate data to add to the database
-                    sh "python data-clear.py"
-                }
-            }
-        }
+     
          
         stage('Check Kubernetes Cluster') {
             steps {
