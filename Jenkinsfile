@@ -56,7 +56,7 @@ pipeline {
                 // Run Gauntlt using the Docker image
                 sh '''
                     docker run --rm -v ${WORKSPACE}:${WORKSPACE}:rw \
-                    -v ${WORKSPACE}:/gauntlt-tests \
+                    -v ${WORKSPACE} :/gauntlt-tests \
                     cithit/gauntlt:build-4 gauntlt /gauntlt-tests/*.attack
                 '''
             }
