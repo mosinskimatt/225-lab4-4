@@ -57,7 +57,7 @@ pipeline {
                 sh 'docker rm -f gauntlt-runner || true'
 
                 // Create a Docker container without starting it
-                sh 'docker create --name gauntlt-runner -v \$(pwd)/test_files:/gauntlt-tests cithit/gauntlt:build-4'
+                sh 'docker create --name gauntlt-runner -v \$(pwd)/test-files:/gauntlt-tests cithit/gauntlt:build-4'
             }
         }
         
