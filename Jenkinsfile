@@ -55,7 +55,7 @@ pipeline {
         
                 // Run Gauntlt using the Docker image
                 sh """
-                docker run cithit/gauntlt:build-4 gauntlt /workspace/port.attack
+                docker run -v \$(pwd)/port.attack:/. cithit/gauntlt:build-4 gauntlt /workspace/port.attack
                 """
             }
         }
