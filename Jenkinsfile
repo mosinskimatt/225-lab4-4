@@ -54,6 +54,9 @@ pipeline {
             steps {
                 // Pull your custom Gauntlt Docker image
                 sh 'docker pull cithit/gauntlt:build-4'
+
+                // Check if a container named 'gauntlt-runner' already exists, and remove it if it does
+                sh 'docker rm -f gauntlt-test || true'
         
                 // Create a Docker container without starting it
                 sh 'docker create --name gauntlt-test cithit/gauntlt:build-4'
