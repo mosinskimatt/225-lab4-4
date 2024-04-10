@@ -56,27 +56,27 @@ pipeline {
                 sh 'docker pull cithit/gauntlt:build-4'
         
                 // Create a Docker container without starting it
-                sh 'docker create --name gauntlt-runner cithit/gauntlt:build-4'
+                sh 'docker create --name gauntlt-test cithit/gauntlt:build-4'
             }
         }
         
         stage("Copy Test Files") {
             steps {
                 // Copy test files to the container
-                sh 'docker cp \$(pwd)/test-files/. gauntlt-runner:/gauntlt-tests'
+                sh 'docker cp \$(pwd)/test-files/. gauntlt-test:/gauntlt-tests'
             }
         }
         
         stage("Run Gauntlt Attacks") {
             steps {
                 // Start the container
-                sh 'docker start gauntlt-runner'
+                sh 'docker start gauntlt-test'
         
                 // Execute Gauntlt attack
-                sh 'docker exec gauntlt-runner gauntlt /gauntlt-tests/port.attack'
+                sh 'docker exec gauntlt-test gauntlt /gauntlt-tests/port.attack'
         
                 // Optionally, clean up the container after the run
-                sh 'docker rm -f gauntlt-runner'
+                sh 'docker rm -f gauntlt-test'
             }
 }
 
