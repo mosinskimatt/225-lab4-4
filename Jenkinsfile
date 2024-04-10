@@ -52,11 +52,12 @@ pipeline {
 
          stage("Create Gauntlt Container") {
             steps {
-                // Pull your custom Gauntlt Docker image
-                sh 'docker pull cithit/gauntlt:build-4'
 
                 // Check if a container named 'gauntlt-runner' already exists, and remove it if it does
                 sh 'docker rm -f gauntlt-test || true'
+
+                // Pull your custom Gauntlt Docker image
+                sh 'docker pull cithit/gauntlt:build-4'
         
                 // Create a Docker container without starting it
                 sh 'docker create --name gauntlt-test cithit/gauntlt:build-4'
@@ -77,9 +78,6 @@ pipeline {
         
                 // Execute Gauntlt attack
                 sh 'docker exec gauntlt-test gauntlt /gauntlt-tests/port.attack'
-        
-                // Optionally, clean up the container after the run
-                sh 'docker rm -f gauntlt-test'
             }
 }
 
