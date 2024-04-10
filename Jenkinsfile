@@ -48,38 +48,38 @@ pipeline {
             }
         }
 
-         stage("Prepare Gauntlt Container") {
+    
+
+         stage("Create Gauntlt Container") {
             steps {
                 // Pull your custom Gauntlt Docker image
                 sh 'docker pull cithit/gauntlt:build-4'
-                
-                // Check if a container named 'gauntlt-runner' already exists, and remove it if it does
-                sh 'docker rm -f gauntlt-runner || true'
-
+        
                 // Create a Docker container without starting it
-                sh 'docker create --name gauntlt-runner -v \$(pwd)/test-files:/gauntlt-tests cithit/gauntlt:build-4'
+                sh 'docker create --name gauntlt-runner cithit/gauntlt:build-4'
             }
         }
         
         stage("Copy Test Files") {
             steps {
-                // Copy test files to the container - here we assume files are already where they need to be via volume
-                echo 'Files are mounted and ready in gauntlt-runner'
+                // Copy test files to the container
+                sh 'docker cp \$(pwd)/test-files/. gauntlt-runner:/gauntlt-tests'
             }
         }
         
         stage("Run Gauntlt Attacks") {
             steps {
-                // Start the container and run Gauntlt
-                sh 'docker start -a gauntlt-runner'
+                // Start the container
+                sh 'docker start gauntlt-runner'
         
                 // Execute Gauntlt attack
                 sh 'docker exec gauntlt-runner gauntlt /gauntlt-tests/port.attack'
         
-                // Optionally, you can stop and remove the container after the test
+                // Optionally, clean up the container after the run
                 sh 'docker rm -f gauntlt-runner'
             }
-        }
+}
+
 
 
 
