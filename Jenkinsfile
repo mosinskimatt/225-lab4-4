@@ -48,23 +48,18 @@ pipeline {
             }
         }
 
-    
-
-         stage("Create Gauntlt Container") {
+        stage("Create Gauntlt Container") {
             steps {
-
-stage("Create Gauntlt Container") {
-    steps {
-        // Check if a container named 'gauntlt-test' already exists, and remove it if it does
-        sh 'docker rm -f gauntlt-test || true'
-
-        // Pull your custom Gauntlt Docker image
-        sh 'docker pull cithit/gauntlt:build-4'
-
-        // Create a Docker container without starting it, specifying the amount of RAM
-        sh 'docker create --name gauntlt-test --memory 2g cithit/gauntlt:build-4'
-    }
-}
+                // Check if a container named 'gauntlt-test' already exists, and remove it if it does
+                sh 'docker rm -f gauntlt-test || true'
+        
+                // Pull your custom Gauntlt Docker image
+                sh 'docker pull cithit/gauntlt:build-4'
+        
+                // Create a Docker container without starting it, specifying the amount of RAM
+                sh 'docker create --name gauntlt-test --memory 2g cithit/gauntlt:build-4'
+            }
+        }
         
         stage("Copy Test Files") {
             steps {
