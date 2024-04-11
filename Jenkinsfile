@@ -57,7 +57,7 @@ pipeline {
                 sh 'docker pull cithit/gauntlt:build-4'
         
                 // Create a Docker container without starting it, specifying the amount of RAM
-                sh 'docker create --name gauntlt-test --memory 4g cithit/gauntlt:build-4'
+                sh 'docker create --name gauntlt-test --memory 6g cithit/gauntlt:build-4'
             }
         }
         
