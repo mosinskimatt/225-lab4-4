@@ -51,7 +51,7 @@ pipeline {
         stage("Create Gauntlt Container") {
             steps {
                 // Check if a container named 'gauntlt-test' already exists, and remove it if it does
-                sh 'docker rm -f gauntlt-test || true'
+                //sh 'docker rm -f gauntlt-test || true'
         
                 // Pull your custom Gauntlt Docker image
                 sh 'docker pull cithit/gauntlt:build-4'
