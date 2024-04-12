@@ -1,6 +1,5 @@
 Feature: Ensure that only port 80 is open
-  In order to ensure that the firewall configuration is secure
-  As a security auditor
+
   I want to verify that only port 80 is open on the target system
 
   Scenario: Scan the target system for open ports
