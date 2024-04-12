@@ -67,7 +67,7 @@ pipeline {
         stage("Copy Test Files") {
             steps {
                 // Copy test files to the container
-                sh 'docker cp \$(pwd)/test-files/. gauntlt-test:/gauntlt-tests'
+                sh 'docker cp \$(pwd)/test-files/. gauntlt-test:/test-files'
             }
         }
         
@@ -78,7 +78,7 @@ pipeline {
                 sh 'docker ps'
         
                 // Execute Gauntlt attack
-                sh 'docker exec gauntlt-test gauntlt /gauntlt-tests/port.attack'
+                sh 'docker exec gauntlt-test gauntlt /test-files/port.attack'
             }
 }
 
