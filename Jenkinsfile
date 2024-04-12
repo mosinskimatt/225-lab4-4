@@ -77,7 +77,7 @@ pipeline {
                 sh 'docker start gauntlt-test'
         
                 // Execute Gauntlt attack
-                sh 'docker exec gauntlt-test gauntlet ./gauntlt-tests/port.attack'
+                sh 'docker exec gauntlt-test gauntlet /gauntlt-tests/port.attack'
             }
 }
 
