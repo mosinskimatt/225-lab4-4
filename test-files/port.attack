@@ -7,7 +7,7 @@ Feature: Ensure that only port 80 is open
     Given "nmap" is installed
     When I launch a "nmap" attack with:
       """
-      nmap -p 1-65535 -T4 --open 10.48.10.170
+      nmap -p 1-65535 -T4 --open 10.48.10.116
       """
     Then the output should contain:
       """
