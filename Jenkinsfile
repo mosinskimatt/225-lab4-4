@@ -75,6 +75,7 @@ pipeline {
             steps {
                 // Start the container
                 sh 'docker start gauntlt-test'
+                sh 'docker ps'
         
                 // Execute Gauntlt attack
                 //sh 'docker exec gauntlt-test gauntlet /gauntlt-tests/port.attack'
