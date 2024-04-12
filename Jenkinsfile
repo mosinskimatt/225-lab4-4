@@ -78,7 +78,7 @@ pipeline {
                 sh 'docker ps'
         
                 // Execute Gauntlt attack
-                sh 'docker exec gauntlt-test gauntlet /gauntlt-tests/port.attack'
+                sh 'docker exec gauntlt-test gauntlt /gauntlt-tests/port.attack'
             }
 }
 
