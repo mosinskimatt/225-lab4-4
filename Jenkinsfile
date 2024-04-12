@@ -77,6 +77,7 @@ pipeline {
                 sh 'docker start gauntlt-test'
         
                 // Execute Gauntlt attack
+                sleep time: 15, unit: 'SECONDS'
                 sh 'docker exec gauntlt-test gauntlt /gauntlt-tests/port.attack'
             }
 }
